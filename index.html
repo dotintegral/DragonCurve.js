@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>Dragon curve</title>
+</head>
+<body>
+	<script type="text/javascript" src="org.siery.dragon.js"></script>
+	<canvas id="canvas" width="1200" height="800" style="border: solid 1px black; margin: 10px;"></canvas>
+	<script>
+		org.siery.dragon.init();
+		org.siery.dragon.iterate(16);
+	
+		var path = org.siery.dragon.path(),
+			scale = 2.5,
+			p = {x: 100, y: 300}
+			ctx = document.getElementById("canvas").getContext("2d");
+		
+		ctx.moveTo(p.x,p.y);
+
+		for(var i=0; i<path.length; i++) {	
+			p.x += (scale * path[i][0]);
+			p.y += (scale * path[i][1]);
+			ctx.lineTo(p.x, p.y);
+		}
+
+		ctx.stroke();		
+	</script>
+</body>
+</html>
